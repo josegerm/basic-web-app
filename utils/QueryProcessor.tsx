@@ -27,5 +27,17 @@ export default function QueryProcessor(query: string): string {
     return "Please give numbers.";
   }
 
+  if (query.toLowerCase().includes("plus")) {
+    const matches = query.match(/\d+/g);
+
+    if (matches) {
+      const numbers = matches.map(Number);
+      const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+
+      return `The sum of the numbers is ${sum}.`;
+    }
+    return "Please give numbers.";
+  }
+
   return "";
 }
