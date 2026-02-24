@@ -62,9 +62,28 @@ export default function QueryProcessor(query: string): string {
     const matches = query.match(/\d+/g);
     if (matches) {
       const numbers = matches.map(Number);
-      const product = numbers.reduce((acc, curr) => acc + curr, 1);
+      const product = numbers.reduce((acc, curr) => acc * curr, 1);
 
       return `${product}`;
+    }
+    return "Please give numbers.";
+  }
+
+  if (query.toLowerCase().includes("primes")) {
+    const matches = query.match(/\d+/g);
+
+    if (matches) {
+      const numbers = matches.map(Number);
+      const result = numbers.filter((n) => {
+        const sqRoot = Math.sqrt(n);
+        const cbRoot = Math.pow(n, 1/3);
+        const isSquare = Math.round(sqRoot) ** 2 === n;
+        const isCube = Math.round(cbRoot) ** 3 === n;
+        return isSquare && isCube
+      })
+      const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+
+      return `${result}`;
     }
     return "Please give numbers.";
   }
