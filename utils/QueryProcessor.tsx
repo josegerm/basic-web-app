@@ -74,16 +74,17 @@ export default function QueryProcessor(query: string): string {
 
     if (matches) {
       const numbers = matches.map(Number);
-      const result = numbers.filter((n) => {
-        const sqRoot = Math.sqrt(n);
-        const cbRoot = Math.pow(n, 1/3);
-        const isSquare = Math.round(sqRoot) ** 2 === n;
-        const isCube = Math.round(cbRoot) ** 3 === n;
-        return isSquare && isCube
-      })
-      const sum = numbers.reduce((acc, curr) => acc + curr, 0);
 
-      return `${result}`;
+      const isPrime = (n: number): boolean => {
+        if (n <= 1) return false;
+        if (n === 2) return true;
+        for (let i = 2; i <= Math.sqrt(n); i++) {
+          if (n % i === 0) return false;
+        }
+        return true;
+      }
+      const primes = numbers.filter(isPrime);
+      return `${primes}`
     }
     return "Please give numbers.";
   }
