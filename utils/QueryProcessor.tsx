@@ -22,7 +22,7 @@ export default function QueryProcessor(query: string): string {
       const numbers = matches.map(Number);
       const largest = Math.max(...numbers);
 
-      return `The largest number is ${largest}.`;
+      return `${largest}`;
     }
     return "Please give numbers.";
   }
@@ -34,7 +34,7 @@ export default function QueryProcessor(query: string): string {
       const numbers = matches.map(Number);
       const sum = numbers.reduce((acc, curr) => acc + curr, 0);
 
-      return `The sum of the numbers is ${sum}.`;
+      return `${sum}`;
     }
     return "Please give numbers.";
   }
