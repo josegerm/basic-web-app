@@ -89,5 +89,17 @@ export default function QueryProcessor(query: string): string {
     return "Please give numbers.";
   }
 
+  if (query.toLowerCase().includes("minus")) {
+    const matches = query.match(/\d+/g);
+
+    if (matches) {
+      const numbers = matches.map(Number);
+      const diff = numbers.reduce((acc, curr) => acc - curr, 0);
+
+      return `${diff}`;
+    }
+    return "Please give numbers.";
+  }
+
   return "";
 }
